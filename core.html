@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        RNG Picker
+        option picker
     </title>
 </head>
   
@@ -16,13 +16,13 @@
     </h1>
   
     <h3 id="po">Enter options here:</h3>
-    <form class="" action="index.html" method="post">
+    <form class="" action="index.html" method="post">                               <!-- User can input Options here -->
         <input type="text" name="array[]" value="" /><br>
         <input type="text" name="array[]" value="" /><br>
         <input type="text" name="array[]" value="" /><br>
         <input type="text" name="array[]" value="" /><br>
         <input type="text" name="array[]" value="" /><br>
-        <button type="button" name="button" onclick="pickOption()">
+        <button type="button" name="button" onclick="pickOption()">                 <!-- "Submit" Button to Display randomly picked Option -->
             Submit
         </button>
     </form>
@@ -31,26 +31,26 @@
     <h3 id="par"></h3>
   
     <script>
-        function getRandomInt(max) {
+        function getRandomInt(max) {                                                // function to get random Int based on array.lenght
             return Math.floor(Math.random() * max);
         }
-        function checkEmpty(object) {
+
+        function checkEmpty(object) {                                               // Check for Empty values and return only values with input
             if (!(object.value === "")) {
                 return object;
             }
         }
-        function pickOption() {
-            var input = document.getElementsByName('array[]');
+        function pickOption() {                                                     // Get user input -> Node List
+            var input = document.getElementsByName('array[]');              
             
-            var inputArray = [];
+            var inputArray = [];                                                    // Create Array and copy values from node list into it
             for (var i = input.length; i--; inputArray.unshift(input[i]));
             
             var inputArray = inputArray.filter(checkEmpty);
             
-            var randomObject = inputArray[getRandomInt(inputArray.length)];
-            //alert(randomObject.value);
-            
-            output = "Your result is: " + randomObject.value;
+            var randomObject = inputArray[getRandomInt(inputArray.length)];         // Get random user option
+
+            output = "Your result is: " + randomObject.value;                       // display random user option
             document.getElementById("par").innerHTML = output;
         }
     </script>
