@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  
+<head>
+    <meta charset="utf-8">
+    <title>
+        RNG Picker
+    </title>
+</head>
+  
+<body style="text-align: center;">
+      
+    <h1 style="color: #6af1df;">
+        I will make a choice for you!
+    </h1>
+  
+    <h3 id="po">Enter options here:</h3>
+    <form class="" action="index.html" method="post">
+        <input type="text" name="array[]" value="" /><br>
+        <input type="text" name="array[]" value="" /><br>
+        <input type="text" name="array[]" value="" /><br>
+        <input type="text" name="array[]" value="" /><br>
+        <input type="text" name="array[]" value="" /><br>
+        <button type="button" name="button" onclick="pickOption()">
+            Submit
+        </button>
+    </form>
+    <br>
+  
+    <h3 id="par"></h3>
+  
+    <script>
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+        function checkEmpty(object) {
+            if (!(object.value === "")) {
+                return object;
+            }
+        }
+        function pickOption() {
+            var input = document.getElementsByName('array[]');
+            
+            var inputArray = [];
+            for (var i = input.length; i--; inputArray.unshift(input[i]));
+            
+            var inputArray = inputArray.filter(checkEmpty);
+            
+            var randomObject = inputArray[getRandomInt(inputArray.length)];
+            //alert(randomObject.value);
+            
+            output = "Your result is: " + randomObject.value;
+            document.getElementById("par").innerHTML = output;
+        }
+    </script>
+</body>
+  
+</html>
