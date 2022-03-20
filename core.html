@@ -1,7 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  
+
+<script type="module" defer src="https://cdn.jsdelivr.net/npm/underscore@stable/underscore-umd-min.js">
+    import _, { map } from './underscore-umd-min.js'
+</script>
+
 <head>
     <meta charset="utf-8">
     <title>
@@ -15,14 +19,14 @@
         I will make a choice for you!
     </h1>
   
-    <h3 id="po">Enter options here:</h3>
-    <form class="" action="index.html" method="post">                               <!-- User can input Options here -->
+    <h3>Enter options here:</h3>
+    <form class="" action="index.html" method="post">                               <!-- user can input options here -->
         <input type="text" name="array[]" value="" /><br>
         <input type="text" name="array[]" value="" /><br>
         <input type="text" name="array[]" value="" /><br>
         <input type="text" name="array[]" value="" /><br>
         <input type="text" name="array[]" value="" /><br>
-        <button type="button" name="button" onclick="pickOption()">                 <!-- "Submit" Button to Display randomly picked Option -->
+        <button type="button" name="button" onclick="pickOption()">                 <!-- "Submit" button to display randomly picked option -->
             Submit
         </button>
     </form>
@@ -31,24 +35,20 @@
     <h3 id="par"></h3>
   
     <script>
-        function getRandomInt(max) {                                                // function to get random Int based on array.lenght
-            return Math.floor(Math.random() * max);
-        }
-
-        function checkEmpty(object) {                                               // Check for Empty values and return only values with input
+        function checkEmpty(object) {                                               // check for empty values and return only values with input
             if (!(object.value === "")) {
                 return object;
             }
         }
-        function pickOption() {                                                     // Get user input -> Node List
-            var input = document.getElementsByName('array[]');              
+        function pickOption() {                                                     // get user input -> node list
+            let input = document.getElementsByName('array[]');              
             
-            var inputArray = [];                                                    // Create Array and copy values from node list into it
-            for (var i = input.length; i--; inputArray.unshift(input[i]));
+            let inputArray = [];                                                    // create array and copy values from node list into it
+            for (let i = input.length; i--; inputArray.unshift(input[i]));
             
-            var inputArray = inputArray.filter(checkEmpty);
+            inputArray = inputArray.filter(checkEmpty);
             
-            var randomObject = inputArray[getRandomInt(inputArray.length)];         // Get random user option
+            let randomObject = _.sample(inputArray);                                // get random user option using underscore
 
             output = "Your result is: " + randomObject.value;                       // display random user option
             document.getElementById("par").innerHTML = output;
